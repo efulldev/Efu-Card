@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Efu Card</string>
+    <string name="powered">Powered by Efull Technology Nigeria Limited</string>
+    <string name="merchant_id">Merchant ID</string>
+    <string name="validate_account">Validate Account</string>
+    <string name="title_activity_mmo_payment">Other Payment Options</string>
+    <string name="vendor_id">Vendor Id</string>
+</resources>

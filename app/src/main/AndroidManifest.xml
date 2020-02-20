@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.efulltech.efupay.efucard">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
+        <activity android:name="com.efulltech.efupay.efucard.TransactionHistory"></activity>
+        <activity
+            android:name="com.efulltech.efupay.efucard.MmoPaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.efulltech.efupay.efucard.CardPaymentActivity"
+            android:label="Accept Payment with ATM Card" />
+        <activity
+            android:name="com.efulltech.efupay.efucard.SplashActivity"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.efulltech.efupay.efucard.MerchantLoginActivity"
+            android:label="Login" />
+        <activity
+            android:name="com.efulltech.efupay.efucard.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <!-- Message receiving listener (user can expand independently) -->
+        <receiver
+            android:name="com.efulltech.efupay.efucard.utils.PushMessageReceiver"
+            android:exported="false"> <!-- To ensure the safety of the receiver, it is recommended to set it as non-exportable. If it needs to be open to other applications, it can be restricted by android: permission -->
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+
+
+        <service
+            android:name="com.efulltech.efupay.efucard.utils.MyMessageIntentService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.RECEIVE"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
